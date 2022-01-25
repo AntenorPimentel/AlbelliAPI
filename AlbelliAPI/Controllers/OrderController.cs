@@ -8,7 +8,7 @@ namespace AlbelliAPI.Controllers
 {
     [ApiController]
     [Route("api/order")]
-    public class OrderController : APIControllerController
+    public class OrderController : BaseController
     {
         private readonly IOrderService _orderService;
 

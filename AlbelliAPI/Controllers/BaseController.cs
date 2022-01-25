@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AlbelliAPI.Controllers
 {
-    public class APIControllerController : Controller
+    public class BaseController : Controller
     {
         protected readonly ILogger _logger = Log.Logger;
 
@@ -16,15 +16,10 @@ namespace AlbelliAPI.Controllers
             {
                 return Ok(await action());
             }
-            catch (ArgumentException ex)
-            {
-                LogError(ex, customErrorMessage);
-                return StatusCode(StatusCodes.Status204NoContent, ex.Message);
-            }
             catch (Exception ex)
             {
                 LogError(ex, customErrorMessage);
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return StatusCode(StatusCodes.Status204NoContent, ex.Message);
             }
         }
 
@@ -35,15 +30,10 @@ namespace AlbelliAPI.Controllers
                 await action();
                 return Ok();
             }
-            catch (ArgumentException ex)
-            {
-                LogError(ex, customErrorMessage);
-                return StatusCode(StatusCodes.Status204NoContent, ex.Message);
-            }
             catch (Exception ex)
             {
                 LogError(ex, customErrorMessage);
-                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+                return StatusCode(StatusCodes.Status204NoContent, ex.Message);
             }
         }
 
