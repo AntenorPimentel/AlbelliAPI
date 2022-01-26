@@ -19,7 +19,7 @@ namespace AlbelliAPI.Controllers
             catch (Exception ex)
             {
                 LogError(ex, customErrorMessage);
-                return StatusCode(StatusCodes.Status204NoContent, ex.Message);
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
             }
         }
 
@@ -33,7 +33,7 @@ namespace AlbelliAPI.Controllers
             catch (Exception ex)
             {
                 LogError(ex, customErrorMessage);
-                return StatusCode(StatusCodes.Status204NoContent, ex.Message);
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
             }
         }
 

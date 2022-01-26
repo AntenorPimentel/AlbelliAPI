@@ -1,5 +1,4 @@
-﻿using AlbelliAPI.Business;
-using AlbelliAPI.Business.Services;
+﻿using AlbelliAPI.Business.Services;
 using AlbelliAPI.Data.Gateways;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

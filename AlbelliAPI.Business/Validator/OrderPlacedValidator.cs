@@ -1,4 +1,5 @@
-﻿using AlbelliAPI.Data.Models;
+﻿using AlbelliAPI.Business.Models;
+using AlbelliAPI.Data.Models;
 using FluentValidation;
 
 namespace AlbelliAPI.Business.Validator
@@ -17,8 +18,7 @@ namespace AlbelliAPI.Business.Validator
         public ProductValidator()
         {
             RuleFor(c => c.ProductType)
-                .LessThanOrEqualTo(5).WithMessage("ProductType is invalid")
-                .NotNull().NotEmpty().WithMessage("ProductType is required");
+                .NotNull().IsEnumName(typeof(Enums.ProductTypes), caseSensitive: false).WithMessage("ProductType is invalid");
             RuleFor(c => c.Quantity).NotNull().NotEmpty().WithMessage("Quantity is required");
         }
     }

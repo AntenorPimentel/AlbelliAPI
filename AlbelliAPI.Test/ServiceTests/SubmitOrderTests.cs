@@ -20,7 +20,6 @@ namespace AlbelliAPI.Test
             _sut = new OrderService(_mockOrderPersistenceGateway.Object, _mapper);
         }
 
-
         [Fact]
         public async void Try_SubmitOrder_Valid_Order_Then_SaveOrder()
         {
@@ -49,7 +48,18 @@ namespace AlbelliAPI.Test
 
             var ex = await Assert.ThrowsAsync<ArgumentException>(() => _sut.SubmitOrder(request));
 
-            Assert.Equal("ProductType is required", ex.Message);
+            Assert.Equal("ProductType is invalid", ex.Message);
+            _mockOrderPersistenceGateway.Verify(s => s.SubmitOrder(It.IsAny<OrderDetailsPersistence>()), Times.Never());
+        }
+
+        [Fact]
+        public async void Try_SubmitOrder_Order_WithNullProductType_Then_ThrowArgumentException()
+        {
+            var request = new OrderPlaced().Build().WithNullProductType();
+
+            var ex = await Assert.ThrowsAsync<ArgumentException>(() => _sut.SubmitOrder(request));
+
+            Assert.Equal("'Product Type' must not be empty.", ex.Message);
             _mockOrderPersistenceGateway.Verify(s => s.SubmitOrder(It.IsAny<OrderDetailsPersistence>()), Times.Never());
         }
 

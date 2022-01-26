@@ -3,7 +3,6 @@ using AlbelliAPI.Data.DTOs;
 using AlbelliAPI.Data.Gateways;
 using AlbelliAPI.Data.Models;
 using AutoMapper;
-using System;
 using System.Threading.Tasks;
 
 namespace AlbelliAPI.Business.Services
@@ -20,16 +19,15 @@ namespace AlbelliAPI.Business.Services
 
         public async Task<OrderDetails> GetOrderDetails(int orderID)
         {
-            if (!IsValidOrderID(orderID))
-                throw new ArgumentException("OrderId is invalid");
-            
-            var orderDetailsPersistence = await _orderPersistence.GetOrderDetails(orderID);
             var orderDetailsPersistenceCalculated = new OrderDetailsPersistence();
 
-            if (orderDetailsPersistence == null)
-                _logger.Information("No Order Placed with OrderId: {orderID}", orderID);
-            else
-                orderDetailsPersistenceCalculated = CalculateRequiredBinWidth(orderDetailsPersistence);
+            if (IsValidOrderID(orderID))
+            {
+                var orderDetailsPersistence = await _orderPersistence.GetOrderDetails(orderID);
+
+                if (orderDetailsPersistence != null)
+                    orderDetailsPersistenceCalculated = CalculateRequiredBinWidth(orderDetailsPersistence);
+            }
 
             return _mapper.Map<OrderDetailsPersistence, OrderDetails>(orderDetailsPersistenceCalculated);
         }

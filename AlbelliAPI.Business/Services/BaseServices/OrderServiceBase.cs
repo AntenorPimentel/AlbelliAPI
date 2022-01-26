@@ -2,13 +2,16 @@
 using AlbelliAPI.Business.Validator;
 using AlbelliAPI.Data.DTOs;
 using AlbelliAPI.Data.Models;
+using AutoMapper;
 using System;
 using System.Linq;
 
 namespace AlbelliAPI.Business.Services
 {
-    public class OrderServiceBase : ServiceBase
+    public class OrderServiceBase
     {
+        protected IMapper _mapper;
+
         protected static OrderDetailsPersistence CalculateRequiredBinWidth(OrderDetailsPersistence orderDetailsPersistence)
         {
             double requiredBinWidth = 0.0;
@@ -60,6 +63,9 @@ namespace AlbelliAPI.Business.Services
             return validator.IsValid ? validator.IsValid : throw new ArgumentException(validator.ToString(", "));
         }
 
-        protected static bool IsValidOrderID(int orderId) => orderId > 0;
+        protected static bool IsValidOrderID(int orderId)
+        {
+            return orderId > 0 ? true : throw new ArgumentException("OrderId is invalid");
+        }
     }
 }
