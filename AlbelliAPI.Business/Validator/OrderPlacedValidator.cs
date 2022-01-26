@@ -13,7 +13,7 @@ namespace AlbelliAPI.Business.Validator
         }
     }
 
-    public class ProductValidator : AbstractValidator<ProductPlaced>
+    public class ProductValidator : AbstractValidator<ProductDetails>
     {
         public ProductValidator()
         {

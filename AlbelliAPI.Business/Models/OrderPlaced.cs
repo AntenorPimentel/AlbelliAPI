@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using AlbelliAPI.Business.Models;
+using System.Collections.Generic;
 
 namespace AlbelliAPI.Data.Models
 {
-    public class OrderPlaced
+    public class OrderPlaced 
     {
         public int OrderId { get; set; }
-        public IEnumerable<ProductPlaced> Products { get; set; }
+        public IEnumerable<ProductDetails> Products { get; set; }
     }
 
-    public class ProductPlaced
+    public class OrderDetails 
     {
-        public string ProductType { get; set; }
-
-        public int Quantity { get; set; }
+        public IEnumerable<ProductDetails> Products { get; set; }
+        public double RequiredBinWidth { get; set; }
     }
 }

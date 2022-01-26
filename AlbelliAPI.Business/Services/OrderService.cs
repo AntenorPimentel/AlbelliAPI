@@ -1,5 +1,4 @@
-﻿using AlbelliAPI.Business.Models;
-using AlbelliAPI.Data.DTOs;
+﻿using AlbelliAPI.Data.DTOs;
 using AlbelliAPI.Data.Gateways;
 using AlbelliAPI.Data.Models;
 using AutoMapper;

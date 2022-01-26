@@ -21,7 +21,7 @@ namespace AlbelliAPI.Business.Profiles
                 .ForMember(dest => dest.OrderId, opt => opt.MapFrom(src => src.OrderId))
                 .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Products));
 
-            CreateMap<ProductPlaced, ProductPersitence>()
+            CreateMap<ProductDetails, ProductPersitence>()
                 .ForMember(dest => dest.ProductType, opt => opt.MapFrom(src => src.ProductType))
                 .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity));
         }

@@ -12,8 +12,8 @@ namespace AlbelliAPI.Test.Extensions
             instance = new Faker<OrderPlaced>()
                 .RuleFor(o => o.OrderId, 1)
                 .RuleFor(o => o.Products,
-                        new Faker<ProductPlaced>()
-                            .RuleFor(p => p.ProductType, new Faker().PickRandom<Enums.ProductTypes>().ToString()) //TODO: Verify
+                        new Faker<ProductDetails>()
+                            .RuleFor(p => p.ProductType, new Faker().PickRandom<Enums.ProductTypes>().ToString())
                             .RuleFor(p => p.Quantity, new Faker().Random.Number(min: 1, max: 10))
                             .Generate(10))
                 .Generate();
